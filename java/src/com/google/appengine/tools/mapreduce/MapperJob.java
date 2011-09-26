@@ -50,9 +50,8 @@ public final class MapperJob<K, V, OK, OV> {
   /**
    * Create a task on specified queue with given url upon job completion.
    */
-  public MapperJob<K, V, OK, OV> callUrlWhenDone(String url, String queueName) {
-    specification.setDoneCallbackUrl(url);
-    specification.setDoneCallbackQueueName(queueName);
+  public MapperJob<K, V, OK, OV> withDoneCallback(Callback callback) {
+    specification.setDoneCallback(callback);
     return this;
   }
 
@@ -69,7 +68,7 @@ public final class MapperJob<K, V, OK, OV> {
    * Start the job.
    * @return job id.
    */
-  public String run() {
+  public String start() {
     return MapReduceFactory.getMapReduce().runMapper(baseUrl, specification);
   }
 

@@ -17,7 +17,8 @@ public abstract class DatastoreMutationPool extends Pool {
   /**
    * Unique pool key.
    */
-  PoolKey<DatastoreMutationPool> KEY = new PoolKey<DatastoreMutationPool>(DatastoreMutationPoolImpl.class);
+  public static final PoolKey<DatastoreMutationPool> KEY =
+      new PoolKey<DatastoreMutationPool>(DatastoreMutationPoolImpl.class);
 
   /**
    * Adds a mutation inserting the given {@code entity}.

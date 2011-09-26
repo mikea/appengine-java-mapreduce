@@ -15,4 +15,6 @@ public interface MapReduce {
    * @return mapper job id
    */
   <K, V, OK, OV> String runMapper(String baseUrl, MapperJobSpecification<K, V, OK, OV> specification);
+
+  MapperState getMapperState(String jobId);
 }

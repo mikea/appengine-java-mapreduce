@@ -8,9 +8,11 @@ import java.io.Serializable;
  *
  */
 public final class MapperJobSpecification<K, V, OK, OV> implements Serializable {
-// ------------------------------ FIELDS ------------------------------
+// --------------------------- STATIC FIELDS ---------------------------
 
   private static final long serialVersionUID = 5177328196594755342L;
+
+// ------------------------------ FIELDS ------------------------------
 
   private String jobName = "mapper";
   private Mapper<K, V, OK, OV> mapper;
@@ -19,8 +21,7 @@ public final class MapperJobSpecification<K, V, OK, OV> implements Serializable 
 
   private String controllerQueueName = "default";
   private String workerQueueName = "default";
-  private String doneCallbackUrl = null;
-  private String doneCallbackQueueName = "default";
+  private Callback doneCallback = null;
   private int inputProcessingRate = 1000;
 
 // --------------------------- CONSTRUCTORS ---------------------------
@@ -45,20 +46,12 @@ public final class MapperJobSpecification<K, V, OK, OV> implements Serializable 
     this.controllerQueueName = controllerQueueName;
   }
 
-  public String getDoneCallbackQueueName() {
-    return doneCallbackQueueName;
+  public Callback getDoneCallback() {
+    return doneCallback;
   }
 
-  public void setDoneCallbackQueueName(String doneCallbackQueueName) {
-    this.doneCallbackQueueName = doneCallbackQueueName;
-  }
-
-  public String getDoneCallbackUrl() {
-    return doneCallbackUrl;
-  }
-
-  public void setDoneCallbackUrl(String url) {
-    doneCallbackUrl = url;
+  public void setDoneCallback(Callback doneCallback) {
+    this.doneCallback = doneCallback;
   }
 
   public Input<K,V> getInput() {
@@ -107,11 +100,5 @@ public final class MapperJobSpecification<K, V, OK, OV> implements Serializable 
 
   public void setWorkerQueueName(String workerQueueName) {
     this.workerQueueName = workerQueueName;
-  }
-
-// -------------------------- OTHER METHODS --------------------------
-
-  public boolean hasDoneCallback() {
-    return doneCallbackUrl != null;
   }
 }

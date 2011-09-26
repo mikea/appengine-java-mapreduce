@@ -28,8 +28,8 @@ public abstract class Pool {
   /**
    * Pool key class.
    */
-  public class PoolKey<T extends Pool> {
-    private final Class<? extends T> implClass;
+  public static class PoolKey<T extends Pool> {
+    public final Class<? extends T> implClass;
 
     public PoolKey(Class<? extends T> implClass) {
       this.implClass = implClass;
